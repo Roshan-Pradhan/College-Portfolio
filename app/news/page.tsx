@@ -6,7 +6,13 @@ import { Calendar, Clock, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = { title: "News & Events" };
 
-type BadgeVariant = "success" | "info" | "warning";
+type BadgeVariant =
+  | "default"
+  | "secondary"
+  | "destructive"
+  | "outline"
+  | "ghost"
+  | "link";
 
 const allNews: {
   category: string;
@@ -19,7 +25,7 @@ const allNews: {
 }[] = [
   {
     category: "Achievement",
-    badge: "success",
+    badge: "default",
     title: "Greenfield Students Win National Science Olympiad 2024",
     excerpt:
       "Our Grade 10 team secured first place, beating 120 schools from across Nepal.",
@@ -29,7 +35,7 @@ const allNews: {
   },
   {
     category: "Event",
-    badge: "info",
+    badge: "secondary",
     title: "Annual Sports Day 2025 — A Day of Champions",
     excerpt:
       "Over 600 students competed across 18 events. See results and photos.",
@@ -39,7 +45,7 @@ const allNews: {
   },
   {
     category: "Notice",
-    badge: "warning",
+    badge: "destructive",
     title: "SEE Board Exam Schedule Released — Grade 10",
     excerpt:
       "The NEB has released the SEE 2082 schedule. Review the dates carefully.",
@@ -49,7 +55,7 @@ const allNews: {
   },
   {
     category: "Achievement",
-    badge: "success",
+    badge: "default",
     title: "Greenfield Wins Best School Award at PABSON",
     excerpt:
       "Recognised for outstanding academic results and extracurricular excellence.",
@@ -59,7 +65,7 @@ const allNews: {
   },
   {
     category: "Event",
-    badge: "info",
+    badge: "secondary",
     title: "Science Fair 2025 — Registration Now Open",
     excerpt:
       "Students from Grade 6–12 can register for the upcoming Science Fair.",

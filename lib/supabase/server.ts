@@ -25,10 +25,10 @@ export const createClient = async () => {
 
 // Bypasses RLS — only use in trusted server contexts
 export const createAdminClient = () =>
-  createClient_({
-    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    supabaseKey: process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  });
+  createClient_(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  );
 
 // small helper to avoid naming conflict
 import { createClient as createClient_ } from "@supabase/supabase-js";
