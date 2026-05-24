@@ -79,46 +79,52 @@ export default function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-0.5">
-            {NAV.map((item) => (
-              <div
-                key={item.href}
-                className="relative"
-                onMouseEnter={() => item.sub && setDropdown(item.label)}
-                onMouseLeave={() => setDropdown(null)}
-              >
-                <Link
-                  href={item.href}
-                  className={cn(
-                    "nav-underline flex items-center gap-1 px-3.5 py-2 rounded-md text-sm font-medium transition-colors",
-                    "text-foreground/75 hover:text-foreground hover:bg-accent",
-                  )}
+            {NAV.map((item) => {
+              const isActive =
+                pathname === item.href || pathname.startsWith(item.href + "/");
+              return (
+                <div
+                  key={item.href}
+                  className="relative"
+                  onMouseEnter={() => item.sub && setDropdown(item.label)}
+                  onMouseLeave={() => setDropdown(null)}
                 >
-                  {item.label}
-                  {item.sub && (
-                    <ChevronDown
-                      className={cn(
-                        "w-3.5 h-3.5 transition-transform duration-200",
-                        dropdown === item.label && "rotate-180",
-                      )}
-                    />
-                  )}
-                </Link>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "nav-underline flex items-center gap-1 px-3.5 py-2 rounded-md text-sm font-medium transition-colors",
+                      "text-foreground/75 hover:text-foreground hover:bg-accent",
+                      isActive &&
+                        "nav-underline rounded-b-none border-b-2 border-school-gold bg-accent text-foreground font-semibold",
+                    )}
+                  >
+                    {item.label}
+                    {item.sub && (
+                      <ChevronDown
+                        className={cn(
+                          "w-3.5 h-3.5 transition-transform duration-200",
+                          dropdown === item.label && "rotate-180",
+                        )}
+                      />
+                    )}
+                  </Link>
 
-                {item.sub && dropdown === item.label && (
-                  <div className="absolute top-full left-0 mt-1.5 w-52 animate-fade-in rounded-xl border border-border bg-white shadow-xl py-1.5 z-50">
-                    {item.sub.map((s) => (
-                      <Link
-                        key={s.href + s.label}
-                        href={s.href}
-                        className="block px-4 py-2.5 text-sm text-foreground/75 hover:text-foreground hover:bg-accent transition-colors"
-                      >
-                        {s.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+                  {item.sub && dropdown === item.label && (
+                    <div className="absolute top-full left-0 mt-1.5 w-52 animate-fade-in rounded-xl border border-border bg-white shadow-xl py-1.5 z-50">
+                      {item.sub.map((s) => (
+                        <Link
+                          key={s.href + s.label}
+                          href={s.href}
+                          className="block px-4 py-2.5 text-sm text-foreground/75 hover:text-foreground hover:bg-accent transition-colors"
+                        >
+                          {s.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </nav>
 
           {/* Desktop CTA */}
